@@ -8,55 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var counter: [Int] = [0, 0, 0]
+    var name = String()
+    @State var counter : [Int] = [0, 0, 0]
     var body: some View {
         VStack{
-            HStack{
-                Text("أستغفر الله العظيم").font(.title)
-                Spacer()
-                Text("\(counter[0])")
-                    .font(.largeTitle)
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .padding()
-                    .onTapGesture {
-                        counter[0] = counter[0] + 1
-                    }
-            }.padding()
-            HStack{
-                Spacer()
-                Text("الحمدلله").font(.title)
-                Spacer()
-                Text("\(counter[1])")
-                    .font(.largeTitle)
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .padding()
-                    .onTapGesture {
-                        counter[1] = counter[1] + 1
-                    }
-            }.padding()
-            HStack{
-                Text("سبحان الله وبحمده").font(.title)
-                Spacer()
-                Text("\(counter[2])")
-                    .font(.largeTitle)
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .clipShape(Circle())
-                    .padding()
-                    .onTapGesture {
-                        counter[2] = counter[2] + 1
-                    }
+            Alarbash(name: "استغفرالله", eman: $counter[0])
+            Alarbash(name: "الحمدلله", eman: $counter[1])
+            Alarbash(name: "سبحان الله", eman: $counter[2])
             }.padding()
         }
     }
-}
+
 
 
 // يجب عمل extract
@@ -64,5 +26,26 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct Alarbash: View {
+     var name: String
+    @Binding var eman: Int
+    var body: some View {
+        HStack{
+    Text(name).font(.title)
+            Spacer()
+            Text("\(eman)")
+                .font(.largeTitle)
+                .frame(width: 100, height: 100, alignment: .center)
+                .foregroundColor(.white)
+                .background(Color.green)
+                .clipShape(Circle())
+                .padding()
+                .onTapGesture {
+                    eman += 1
+                }
+        }.padding()
     }
 }
